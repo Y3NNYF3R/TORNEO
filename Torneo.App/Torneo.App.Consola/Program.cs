@@ -17,6 +17,8 @@ namespace Torneo.App.Consola
                 Console.WriteLine("2.Insertar DT");
                 Console.WriteLine("3.Insertar equipo");
                 Console.WriteLine("4.Mostrar municipios");
+                Console.WriteLine("5.Mostrar directores técnicos");
+                Console.WriteLine("6.Mostrar equipos");
                 Console.WriteLine("0.Salir");
                 opcion = Int32.Parse(Console.ReadLine());
                 switch (opcion)
@@ -32,6 +34,12 @@ namespace Torneo.App.Consola
                         break;
                     case 4:
                         GetAllMunicipios();
+                        break;
+                    case 5:
+                        GetAllDTs();
+                        break;
+                    case 6:
+                        GetEquipos();
                         break;
                 }
 
@@ -91,6 +99,20 @@ namespace Torneo.App.Consola
             foreach (var municipio in _repoMunicipio.GetAllMunicipios())
             {
                 Console.WriteLine(municipio.Id + " " + municipio.Nombre);
+            }
+        }
+        private static void GetAllDTs()
+        {
+            foreach (var dt in _repoDT.GetAllDTs())
+            {
+                Console.WriteLine(dt.Id + " " + dt.Nombre + " " + dt.Documento + " " + dt.Telefono);
+            }
+        }
+        private static void GetEquipos()
+        {
+            foreach (var equipo in _repoEquipo.GetAllEquipos())
+            {
+                Console.WriteLine(equipo.Id + " " + equipo.Nombre + " " + equipo.Municipio.Nombre + " " + equipo.DirectorTecnico.Nombre);
             }
         }
     }
